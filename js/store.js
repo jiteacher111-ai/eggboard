@@ -1,4 +1,5 @@
-// 상태 저장소와 학급 화폐·펫 규칙. 모든 데이터는 브라우저 localStorage에 저장된다.
+// 상태 저장소와 학급 화폐·펫 규칙(체험 모드). 이 모드에서는 모든 데이터가 브라우저 localStorage에 저장된다.
+// 온라인 모드에서는 같은 규칙을 supabase/schema.sql 의 함수들이 서버에서 처리한다.
 
 const STORE_KEY = 'eggboard:v1';
 const MAX_LOG = 3000;
@@ -20,6 +21,7 @@ function defaultState() {
       baseWage: 10,
       allowNegative: false,
       rewardXp: true,
+      marketOpen: true,
     },
     students: [],
     jobs: DEFAULT_JOBS.map((j) => ({ id: uid(), ...j })),
@@ -76,9 +78,10 @@ function save() {
 
 /* ---------- 학생 ---------- */
 
+const randomSpecies = () => PET_SPECIES[Math.floor(Math.random() * PET_SPECIES.length)].id;
+
 function newPet() {
-  const sp = PET_SPECIES[Math.floor(Math.random() * PET_SPECIES.length)];
-  return { species: sp.id, name: '', xp: 0, fullness: 70, fedAt: Date.now(), pettedOn: '', acc: null };
+  return { species: randomSpecies(), name: '', xp: 0, fullness: 70, fedAt: Date.now(), pettedOn: '', acc: null };
 }
 
 function newStudent(name, number) {
@@ -112,14 +115,8 @@ function fullnessNow(pet) {
   return Math.max(0, Math.min(100, (pet.fullness ?? 70) - days * HUNGER_PER_DAY));
 }
 
-// 진화가 일어나면 여기에 쌓아두었다가 화면에서 축하 연출로 보여준다.
-let pendingEvolutions = [];
-
 function gainXp(s, n) {
-  const before = stageIndex(s.pet.xp);
   s.pet.xp = Math.max(0, s.pet.xp + n);
-  const after = stageIndex(s.pet.xp);
-  if (after > before) pendingEvolutions.push({ sid: s.id, to: after });
   return n;
 }
 

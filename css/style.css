@@ -452,6 +452,34 @@ textarea:focus {
   font-size: 1.5rem;
 }
 
+.rules summary {
+  cursor: pointer;
+  list-style: none;
+}
+
+.rules summary::-webkit-details-marker {
+  display: none;
+}
+
+.rules summary h2 {
+  display: inline;
+  margin: 0;
+}
+
+.rules summary::after {
+  content: ' ▾ 펼치기';
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.rules[open] summary::after {
+  content: ' ▴ 접기';
+}
+
+.rules[open] summary {
+  margin-bottom: 12px;
+}
+
 .rules ul {
   margin: 0 0 12px;
   padding-left: 20px;
@@ -746,8 +774,13 @@ textarea:focus {
   font-size: 1.6rem;
 }
 
+.inv-item {
+  flex-wrap: wrap;
+}
+
 .inv-name {
   flex: 1;
+  min-width: 120px;
 }
 
 .mini-log {
@@ -1143,6 +1176,7 @@ table.edit + .btn {
 
 @media (max-width: 720px) {
   .topbar {
+    position: static;
     padding: 10px 16px;
   }
 
@@ -1184,5 +1218,264 @@ table.edit + .btn {
 
   body.has-actionbar {
     padding-bottom: 300px;
+  }
+
+  #toasts {
+    top: auto;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+  }
+
+  .toast {
+    max-width: none;
+  }
+
+  .user .pill {
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+/* ---------- 로그인·온라인 모드 ---------- */
+
+.user {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+body.busy {
+  cursor: progress;
+}
+
+body.busy .btn,
+body.busy .chip {
+  pointer-events: none;
+}
+
+.badge {
+  display: inline-block;
+  min-width: 20px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: var(--bad);
+  color: #fff;
+  font-size: 0.8rem;
+  line-height: 20px;
+  text-align: center;
+}
+
+.pill.warn {
+  background: #fff1d0;
+  color: #9a6400;
+  border: 0;
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+span.pill.warn {
+  cursor: default;
+}
+
+.notice {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  background: #fff3d6;
+  border-radius: 14px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+}
+
+.login {
+  display: flex;
+  justify-content: center;
+  padding: 40px 0;
+}
+
+.login-card {
+  width: min(420px, 100%);
+  background: var(--surface);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  padding: 28px 24px;
+  text-align: center;
+}
+
+.login-card h1 {
+  margin: 0 0 16px;
+}
+
+.login-card .empty-egg {
+  font-size: 4.5rem;
+}
+
+.login-card form {
+  display: grid;
+  gap: 10px;
+}
+
+.login-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: var(--bg);
+  border-radius: 999px;
+  padding: 4px;
+  margin-bottom: 16px;
+}
+
+.login-tabs button {
+  border: 0;
+  background: transparent;
+  border-radius: 999px;
+  padding: 10px;
+  font-family: var(--font-title);
+  font-size: 1.05rem;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.login-tabs button.active {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.code-input {
+  text-align: center;
+  font-family: var(--font-title);
+  font-size: 2rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 12px;
+}
+
+.me-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.me-head h2 {
+  margin: 0;
+  flex: 1;
+}
+
+.pet-card.mine {
+  border-color: var(--select);
+}
+
+.me-tag {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-radius: 999px;
+  padding: 1px 9px;
+  font-family: var(--font-title);
+}
+
+.cats.tight {
+  margin: 0;
+}
+
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-title);
+  font-size: 1.05rem;
+  cursor: pointer;
+}
+
+.switch input {
+  width: 20px;
+  height: 20px;
+}
+
+code.code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 1.05rem;
+  letter-spacing: 0.08em;
+  background: var(--bg);
+  border-radius: 6px;
+  padding: 2px 6px;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.code-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.code-card {
+  border: 2px dashed var(--line);
+  border-radius: 14px;
+  padding: 14px;
+  text-align: center;
+  break-inside: avoid;
+}
+
+.cc-class,
+.cc-url {
+  font-size: 0.8rem;
+  color: var(--muted);
+  word-break: break-all;
+}
+
+.cc-name {
+  font-family: var(--font-title);
+  font-size: 1.2rem;
+  margin-top: 4px;
+}
+
+.cc-code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 1.8rem;
+  font-weight: bold;
+  letter-spacing: 0.15em;
+  margin: 6px 0;
+}
+
+@media print {
+  body > *:not(#modal),
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+  }
+
+  .modal {
+    position: static;
+    background: none;
+    padding: 0;
+  }
+
+  .modal-card {
+    box-shadow: none;
+    max-height: none;
+    overflow: visible;
+    width: 100% !important;
+    padding: 0;
+    animation: none;
+  }
+
+  .code-cards {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
