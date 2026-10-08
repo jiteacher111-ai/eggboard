@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>에그보드 · 학급 경영</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥚</text></svg>" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Jua&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="logo">🥚</span>
+        <div>
+          <h1 id="className">우리 반</h1>
+          <small>에그보드 · 학급 경영</small>
+        </div>
+      </div>
+      <nav class="tabs">
+        <button data-view="board">🏫 학급 보드</button>
+        <button data-view="pets">🐣 펫 마을</button>
+        <button data-view="market">🛒 학급 마켓</button>
+        <button data-view="log">📜 기록</button>
+        <button data-view="settings">⚙️ 설정</button>
+      </nav>
+    </header>
+
+    <main id="view"></main>
+
+    <div id="actionbar" class="actionbar hidden"></div>
+    <div id="modal" class="modal hidden"><div id="modalCard" class="modal-card"></div></div>
+    <div id="toasts"></div>
+
+    <script src="js/data.js"></script>
+    <script src="js/store.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
