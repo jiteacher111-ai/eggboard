@@ -3,6 +3,6 @@
 // Supabase 프로젝트의 Project Settings → API 에서 Project URL 과 anon public 키를 복사해 넣으세요.
 // (anon 키는 공개되어도 되는 키예요. service_role 키는 절대 넣지 마세요!)
 window.EGGBOARD_CONFIG = {
-  supabaseUrl: '',
-  supabaseAnonKey: '',
+  supabaseUrl: 'https://bqqcucgdujqrfopdgbzr.supabase.co',
+  supabaseAnonKey: 'sb_publishable_yYbxgIzFT0v7x3sfY2C7gA_SFzJi_Ek',
 };
